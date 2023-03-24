@@ -28,12 +28,14 @@ def checker(line):
         return False
     elif line == '.':
         return False
+    elif len(line) >= 30:
+        return False
     else:
         return True
 
 seperator = '|'
 with open('data/nom_prenom.csv', 'r') as f_in, open('data/nom.txt', 'w') as f_nom, \
-                                                open('data/prenom.txt', 'w') as f_prenom:
+            open('data/prenom.txt', 'w') as f_prenom, open('data/nom_prenom_traite.txt', 'w') as f_traite:
     # Read the input file line by line
     for line in tqdm(f_in):
         lineb = line.split(seperator)
@@ -45,6 +47,10 @@ with open('data/nom_prenom.csv', 'r') as f_in, open('data/nom.txt', 'w') as f_no
             if lineb[1].startswith(' '):
                 lineb[1] = lineb[1][1:]
             f_prenom.write(lineb[1].replace('\n', "") + '\n')
+        if len(lineb) > 1:
+            if len(lineb[0]) > 1 and len(lineb[1]) > 1 \
+                and checker(lineb[0]) and checker(lineb[1]):
+                    f_traite.write(lineb[0].replace('\n', "") + '|' + lineb[1].replace('\n', "") + '\n')
 
 
 

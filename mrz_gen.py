@@ -28,9 +28,9 @@ mrz_list = []
 sex = 'F'
 cpt = 0
 with open('data/mrz.txt', 'w') as f_in:
-    for i in names:
+    for i in tqdm(names):
         i = i.split('|')
-        if len(i[0])+len(i[1]) >= 30:
+        if len(i[0])+len(i[1]) >= 27:
             continue
         res = TD1CodeGenerator(       "ID",
                                 "DZA",
@@ -48,6 +48,6 @@ with open('data/mrz.txt', 'w') as f_in:
             sex = 'F'
         cpt += 1
         f_in.write(str(res))
-        f_in.write('\n\n')
-        if cpt == 5000:
+        f_in.write('\n')
+        if cpt == 100000:
             break

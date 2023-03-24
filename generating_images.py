@@ -105,11 +105,7 @@ with open('data/mrz.txt','r') as file:
     data = []
     one_mrz = []
     for line in file:
-        if line == '\n':
-            continue
-        else:
-            data.append(line.strip())
-
+        data.append(line.strip())
 file=open('annotation.txt','a+')
 
 file_counter=0

@@ -12,6 +12,9 @@ with open('data/nom.txt', 'r') as f_prenom:
     for line in tqdm(f_prenom):
         prenom.append(line.replace('\n', ""))
 
+random.shuffle(nom)
+random.shuffle(prenom)
+
 print(len(nom), len(prenom))
 random_nom= random.sample(nom, 1000)
 random_prenom= random.sample(prenom, 1000)
